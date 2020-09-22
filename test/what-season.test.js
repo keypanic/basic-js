@@ -77,10 +77,10 @@ describe('What season', () => {
             let res = null;
             try {
                 getSeason();
-            } catch(err) {
+            } catch(err) { 
               if (err._validationProp === 'NA') {
                 this.skip();
-              } else {
+              } else { 
                 res = 'FAIL';
               }
             }
@@ -267,14 +267,18 @@ describe('What season', () => {
             Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
 
             try {
+                tmp = "";
                 getSeason(deeperFakeDate)
             } catch(err) {
                 if (err._validationProp === 'NA') {
+                    tmp = err._validationProp + " IF ";
                     this.skip();
                   } else {
+                    tmp = err._validationProp + " ELSE ";
                     res = 'THROWN';
                   }
             }
+            assert.equal(tmp, "HMMMM");
             assert.equal(res, 'THROWN');
         });
     });
